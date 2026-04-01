@@ -9,6 +9,7 @@ import AppLayout from "@/components/AppLayout";
 import LandingPage from "@/pages/LandingPage";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
+import ForgotPasswordPage from "@/pages/ForgotPasswordPage";
 import DashboardPage from "@/pages/DashboardPage";
 import VehiclePage from "@/pages/VehiclePage";
 import FinancingPage from "@/pages/FinancingPage";
