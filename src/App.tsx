@@ -9,6 +9,7 @@ import AppLayout from "@/components/AppLayout";
 import LandingPage from "@/pages/LandingPage";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
+import ForgotPasswordPage from "@/pages/ForgotPasswordPage";
 import DashboardPage from "@/pages/DashboardPage";
 import VehiclePage from "@/pages/VehiclePage";
 import FinancingPage from "@/pages/FinancingPage";
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/apresentacao" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/cadastro" element={<RegisterPage />} />
+              <Route path="/esqueci-senha" element={<ForgotPasswordPage />} />
               <Route element={<AppLayout />}>
                 <Route path="/" element={<DashboardPage />} />
                 <Route path="/veiculo" element={<VehiclePage />} />
