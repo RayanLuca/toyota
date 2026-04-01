@@ -52,6 +52,9 @@ const LoginPage = () => {
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full">Entrar</Button>
+            <p className="text-center text-sm">
+              <Link to="/esqueci-senha" className="text-muted-foreground hover:text-primary hover:underline text-xs">Esqueci minha senha</Link>
+            </p>
             <p className="text-center text-sm text-muted-foreground">
               Não tem conta?{" "}
               <Link to="/cadastro" className="text-primary hover:underline font-medium">Cadastre-se</Link>
