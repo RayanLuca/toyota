@@ -5,71 +5,127 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Car } from "lucide-react";
+import logoT from "@/assets/logoT.png";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { register, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
 
-  if (isAuthenticated) {
-    navigate("/", { replace: true });
-    return null;
-  }
+  const { login } = useAuth(); // pode usar depois pra auto login
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!name || !email || !password || !confirm) {
+
+    if (!name || !email || !password || !confirmPassword) {
       setError("Preencha todos os campos.");
       return;
     }
-    if (password !== confirm) {
+
+    if (password !== confirmPassword) {
       setError("As senhas não coincidem.");
       return;
     }
-    register(name, email, password);
+
+    // simulação de cadastro
+    const newUser = { name, email };
+    localStorage.setItem("user", JSON.stringify(newUser));
+
+    // auto login
+    login(email, password);
+
     navigate("/");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md animate-fade-in">
+    <div className="w-full min-h-screen bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/c84ab249239255.56085275bc31a.png')] bg-center bg-cover flex flex-col items-center justify-center p-4">
+      
+      <Card className="w-full max-w-md animate-fade-in backdrop-blur-xl bg-white/10">
+        
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto w-12 h-12 rounded-full toyota-gradient flex items-center justify-center mb-2">
-            <Car className="h-6 w-6 text-primary-foreground" />
+          <div className="mx-auto w-16 h-16 flex items-center justify-center mb-1">
+            <img src={logoT} alt="Toyota Logo" className="w-24 h-24 object-contain" />
           </div>
-          <CardTitle className="text-2xl font-bold">Criar Conta</CardTitle>
-          <CardDescription>Preencha os dados para se cadastrar</CardDescription>
+
+          <CardTitle className="text-2xl font-bold text-white">
+            Criar Conta
+          </CardTitle>
+
+          <CardDescription className="text-white">
+            Cadastre-se para acompanhar seu veículo
+          </CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+
+            {/* NOME */}
             <div className="space-y-2">
-              <Label htmlFor="name">Nome</Label>
-              <Input id="name" placeholder="Seu nome" value={name} onChange={(e) => setName(e.target.value)} />
+              <Label className="text-white">Nome</Label>
+              <Input
+                placeholder="Seu nome"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
+
+            {/* EMAIL */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Label className="text-white">Email</Label>
+              <Input
+                type="email"
+                placeholder="seu@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
+
+            {/* SENHA */}
             <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Label className="text-white">Senha</Label>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
+
+            {/* CONFIRMAR SENHA */}
             <div className="space-y-2">
-              <Label htmlFor="confirm">Confirmar Senha</Label>
-              <Input id="confirm" type="password" placeholder="••••••••" value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+              <Label className="text-white">Confirmar Senha</Label>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
             </div>
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <Button type="submit" className="w-full">Cadastrar</Button>
-            <p className="text-center text-sm text-muted-foreground">
+
+            {/* ERRO */}
+            {error && (
+              <p className="text-sm text-red-500 text-center">
+                {error}
+              </p>
+            )}
+
+            {/* BOTÃO */}
+            <Button type="submit" className="w-full">
+              Criar conta
+            </Button>
+
+            {/* LOGIN */}
+            <p className="text-center text-white text-sm">
               Já tem conta?{" "}
-              <Link to="/login" className="text-primary hover:underline font-medium">Fazer login</Link>
+              <Link to="/login" className="hover:underline font-medium">
+                Entrar
+              </Link>
             </p>
+
           </form>
         </CardContent>
       </Card>

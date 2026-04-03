@@ -3,30 +3,41 @@ import { Button } from "@/components/ui/button";
 import { Car, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import toyotaCar from "@/assets/toyota-car.png";
+import logoT from "@/assets/logoT.png";
+import corolla from "@/assets/corolla.png";
+import yaris from "@/assets/yarisseda.png";
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const carImages = [toyotaCar, toyotaCar, toyotaCar];
+  const carImages = [toyotaCar, corolla, yaris];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Nav */}
-      <nav className="border-b border-border bg-background">
+      <nav className="bg-black border-b-4 border-red-600">
         <div className="flex items-center justify-between px-6 py-3 max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-full border-2 border-foreground flex items-center justify-center">
-              <Car className="h-4 w-4" />
-            </div>
-            <span className="text-lg font-bold tracking-wide">TOYOTA ACE</span>
+            <img
+          src={logoT}
+          alt="Toyota Logo"
+          className="w-10 h-10 object-contain"
+/>
+            <span className="text-lg text-white font-bold tracking-wide">TOYOTA ACE</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
-            <span className="hidden sm:inline text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
+            <span className="hidden sm:inline text-white text-muted-foreground hover:text-foreground cursor-pointer transition-colors-red">
               Garantia Toyota 10
             </span>
-            <Button variant="ghost" size="sm" onClick={() => navigate("/login")}>
-              Login
+            <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/login")}
+            className="text-white"
+          >
+             Login
             </Button>
           </div>
         </div>
@@ -171,7 +182,7 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-border py-6 px-6 text-center text-sm text-muted-foreground">
+      <footer className="mt-auto bg-black border-t border-border py-6 px-6 text-center text-white text-sm text-muted-foreground">
         © {new Date().getFullYear()} Toyota do Brasil — Todos os direitos reservados
       </footer>
     </div>

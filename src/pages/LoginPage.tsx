@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Car } from "lucide-react";
+import logoT from "@/assets/logoT.png";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -31,31 +32,35 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md animate-fade-in">
+    <div className="w-full min-h-screen bg-[url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/c84ab249239255.56085275bc31a.png')] bg-center bg-cover flex flex-col items-center justify-center p-4">
+      <Card className="w-full max-w-md animate-fade-in backdrop-blur-xl bg-white/10">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto w-12 h-12 rounded-full toyota-gradient flex items-center justify-center mb-2">
-            <Car className="h-6 w-6 text-primary-foreground" />
+          <div className="mx-auto w-16 h-16 rounded-full  flex items-center justify-center mb-1">
+                   <img
+          src={logoT}
+          alt="Toyota Logo"
+          className="w-24 h-24 object-contain"
+            />
           </div>
-          <CardTitle className="text-2xl font-bold">Toyota Tracker</CardTitle>
-          <CardDescription>Acesse sua conta para acompanhar seu veículo</CardDescription>
+          <CardTitle className="text-2xl font-bold text-white">TOYOTA ACE</CardTitle>
+          <CardDescription className="text-white">Acesse sua conta para acompanhar seu veículo</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-white">Email</Label>
               <Input id="email" type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
+              <Label htmlFor="password" className="text-white">Senha</Label>
               <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full">Entrar</Button>
             <p className="text-center text-sm">
-              <Link to="/esqueci-senha" className="text-muted-foreground hover:text-primary hover:underline text-xs">Esqueci minha senha</Link>
+              <Link to="/esqueci-senha" className="text-muted-foreground hover:text-primary text-white hover:underline text-xs">Esqueci minha senha</Link>
             </p>
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-center text-white text-sm text-muted-foreground">
               Não tem conta?{" "}
               <Link to="/cadastro" className="text-primary hover:underline font-medium">Cadastre-se</Link>
             </p>

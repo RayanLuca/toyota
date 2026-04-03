@@ -12,7 +12,7 @@ const AppHeader = () => {
     <header className="h-14 border-b bg-card flex items-center justify-between px-4 md:px-6">
       <div className="flex items-center gap-3">
         <span className="text-primary font-bold text-lg tracking-tight">TOYOTA</span>
-        <span className="hidden sm:inline text-muted-foreground text-sm">Vehicle Tracker</span>
+        <span className="hidden sm:inline text-muted-foreground text-sm">Toyota ACE</span>
       </div>
       <div className="flex items-center gap-2">
         <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-muted-foreground hover:text-foreground">
@@ -20,7 +20,7 @@ const AppHeader = () => {
         </Button>
         {user && (
           <>
-            <span className="hidden md:inline text-sm text-muted-foreground">{user.name}</span>
+            <span className="hidden md:inline text-sm text-muted-foreground">fulano</span>
             <Button variant="ghost" size="icon" onClick={logout} className="text-muted-foreground hover:text-primary">
               <LogOut className="h-4 w-4" />
             </Button>

@@ -10,7 +10,7 @@ const DashboardPage = () => {
   return (
     <div className="space-y-6 max-w-5xl">
       <div>
-        <h1 className="text-2xl font-bold">Olá, {user?.name}! 👋</h1>
+        <h1 className="text-2xl font-bold">Olá, Fulano! 👋</h1>
         <p className="text-muted-foreground mt-1">Acompanhe o status do seu veículo em tempo real.</p>
       </div>
 
