@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Car, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
-import toyotaCar from "@/assets/toyota-car.png";
+import toyotaCar from "@/assets/hilux.png";
 import logoT from "@/assets/logoT.png";
 import corolla from "@/assets/corolla.png";
 import yaris from "@/assets/yarisseda.png";

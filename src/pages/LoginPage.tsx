@@ -114,9 +114,7 @@ const LoginPage = () => {
         </CardContent>
       </Card>
 
-       <footer className="mt-full bg-black border-t border-border py-6 px-6 text-center text-white text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Toyota do Brasil — Todos os direitos reservados
-      </footer>
+       
     </div>
   );
 };

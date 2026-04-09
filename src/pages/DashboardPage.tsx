@@ -8,121 +8,132 @@ import corolla from "@/assets/corolla.png";
 const DashboardPage = () => {
   const { user } = useAuth();
 
-  // 🔥 DADOS MOCKADOS
   const item = {
     model: "Corolla Cross XRE 2025",
-    imageUrl: "https://toyota.com.br/media/vehicles/corolla-cross.png"
   };
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto">
+    <div className="min-h-screen flex flex-col">
 
-      {/* HEADER */}
-      <div>
-        <h1 className="text-2xl font-bold">
-          Olá, {user?.name || "Usuário"} 👋
-        </h1>
-        <p className="text-muted-foreground mt-1">
-          Acompanhe o status do seu veículo em tempo real.
-        </p>
-      </div>
+      {/* CONTEÚDO */}
+      <main className="flex-1">
+        <div className="space-y-8 max-w-7xl mx-auto px-4 py-6">
 
-      {/* CARDS */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-2">
-            <div className="p-2 rounded-lg bg-accent">
-              <Car className="h-5 w-5 text-primary" />
-            </div>
-            <CardTitle className="text-base">Status do Veículo</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">Em Produção</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              {item.model}
+          {/* HEADER */}
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Olá, {user?.name || "Usuário"} 👋
+            </h1>
+            <p className="text-gray-500 mt-2">
+              Acompanhe o status do seu veículo em tempo real.
             </p>
-          </CardContent>
-        </Card>
+          </div>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-2">
-            <div className="p-2 rounded-lg bg-accent">
-              <Factory className="h-5 w-5 text-primary" />
+          {/* CARDS */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+            {/* CARD 1 */}
+            <Card className="bg-white dark:bg-zinc-900 border shadow-sm hover:shadow-md transition">
+              <CardHeader className="flex flex-row items-center gap-3 pb-2">
+                <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/30">
+                  <Car className="h-5 w-5 text-red-600" />
+                </div>
+                <CardTitle>Status do Veículo</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-2xl font-bold">Em Produção</p>
+                <p className="text-sm text-gray-500 mt-1">{item.model}</p>
+              </CardContent>
+            </Card>
+
+            {/* CARD 2 */}
+            <Card className="bg-white dark:bg-zinc-900 border shadow-sm hover:shadow-md transition">
+              <CardHeader className="flex flex-row items-center gap-3 pb-2">
+                <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/30">
+                  <Factory className="h-5 w-5 text-red-600" />
+                </div>
+                <CardTitle>Etapa Atual</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-2xl font-bold">Montagem</p>
+                <div className="mt-3">
+                  <Progress value={50} className="h-2" />
+                  <p className="text-xs text-gray-500 mt-1">
+                    50% concluído
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* CARD 3 */}
+            <Card className="bg-white dark:bg-zinc-900 border shadow-sm hover:shadow-md transition">
+              <CardHeader className="flex flex-row items-center gap-3 pb-2">
+                <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/30">
+                  <ClipboardCheck className="h-5 w-5 text-red-600" />
+                </div>
+                <CardTitle>Próximas Ações</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-1 text-sm text-gray-500">
+                  <li>• Pintura programada</li>
+                  <li>• Inspeção de qualidade</li>
+                  <li>• Liberação para retirada</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+          </div>
+
+          {/* CARD GRANDE */}
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 flex flex-col lg:flex-row items-center gap-6">
+
+            {/* ESQUERDA */}
+            <div className="flex-1 space-y-4">
+              <h2 className="text-2xl font-bold text-red-600">
+                {user?.name || "Cliente"}
+              </h2>
+
+              <div className="border rounded-lg p-4 bg-gray-50 dark:bg-zinc-800">
+                <h3 className="font-semibold mb-2">Seu Veículo</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {item.model}
+                </p>
+
+                <ul className="mt-2 text-sm text-gray-500 space-y-1">
+                  <li>• Motorização híbrida</li>
+                  <li>• Economia</li>
+                  <li>• Segurança</li>
+                </ul>
+              </div>
             </div>
-            <CardTitle className="text-base">Etapa Atual</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">Montagem</p>
-            <div className="mt-2">
-              <Progress value={50} className="h-2" />
-              <p className="text-xs text-muted-foreground mt-1">
-                50% concluído
+
+            {/* CENTRO */}
+            <div className="flex-1 flex justify-center">
+              <img
+                src={corolla}
+                alt={item.model}
+                className="max-h-72 object-contain drop-shadow-xl"
+              />
+            </div>
+
+            {/* DIREITA */}
+            <div className="flex-1 text-center bg-gray-50 dark:bg-zinc-800 p-4 rounded-lg">
+              <p className="italic text-gray-600 dark:text-gray-300">
+                "Revisar o carro novo é manter a garantia de fábrica e garantir
+                sua segurança a longo prazo."
               </p>
             </div>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-2">
-            <div className="p-2 rounded-lg bg-accent">
-              <ClipboardCheck className="h-5 w-5 text-primary" />
-            </div>
-            <CardTitle className="text-base">Próximas Ações</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-1 text-sm">
-              <li className="text-muted-foreground">• Pintura programada</li>
-              <li className="text-muted-foreground">• Inspeção de qualidade</li>
-              <li className="text-muted-foreground">• Liberação para retirada</li>
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* CARD GRANDE */}
-      <div className="flex justify-center">
-        <div className="flex w-full shadow-2xl rounded-2xl overflow-hidden p-5 items-center">
-
-          {/* ESQUERDA */}
-          <div className="flex flex-col w-1/4">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">
-              {user?.name || "Cliente"}
-            </h2>
-
-            <div className="border p-4 rounded-lg bg-gray-50 text-sm">
-              <h3 className="font-semibold text-lg mb-2">Seu Veículo</h3>
-              <p className="text-gray-700">{item.model}</p>
-              <ul className="list-disc list-inside mt-2 text-gray-500">
-                <li>Motorização híbrida</li>
-                <li>Economia</li>
-                <li>Segurança</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* CENTRO */}
-          <div className="w-1/2 flex justify-center">
-            <img
-              src={corolla}
-              alt={item.model}
-              className="max-h-72 object-contain"
-            />
-          </div>
-
-          {/* DIREITA */}
-          <div className="w-1/4 text-center">
-            <p className="italic text-gray-700">
-              "Revisar o carro novo é manter a garantia de fábrica e garantir a
-              sua segurança a longo prazo."
-            </p>
           </div>
 
         </div>
-      </div>
+      </main>
 
       {/* FOOTER */}
-      <footer className="bg-black py-6 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} Toyota — Todos os direitos reservados
+      <footer className="bg-black border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-gray-400">
+          © {new Date().getFullYear()} Toyota do Brasil — Todos os direitos reservados
+        </div>
       </footer>
 
     </div>
