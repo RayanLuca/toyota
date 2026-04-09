@@ -31,18 +31,6 @@ const steps = [
     description: "O veículo entrou na linha de produção da fábrica.",
   },
   {
-    label: "Montagem",
-    done: true,
-    color: "bg-purple-500",
-    description: "As peças estão sendo montadas para formar o veículo.",
-  },
-  {
-    label: "Pintura",
-    done: false,
-    color: "bg-pink-500",
-    description: "O carro recebe pintura e acabamento final.",
-  },
-  {
     label: "Inspeção",
     done: false,
     color: "bg-orange-500",
@@ -58,6 +46,7 @@ const steps = [
 
 const VehiclePage = () => {
   const currentStep = steps.filter((s) => s.done).length;
+  const progress = Math.round((currentStep / steps.length) * 100);
 
   return (
     <TooltipProvider>
@@ -80,7 +69,7 @@ const VehiclePage = () => {
             {/* CARD VEÍCULO */}
             <Card className="bg-white dark:bg-zinc-900 border shadow-sm">
               <CardHeader>
-                <CardTitle className="text-xl text-red-600">
+                <CardTitle className="text-xl text-black">
                   {vehicleData.modelo}
                 </CardTitle>
               </CardHeader>
@@ -110,9 +99,27 @@ const VehiclePage = () => {
             <Card className="bg-white dark:bg-zinc-900 border shadow-sm">
               <CardHeader>
                 <CardTitle>Timeline de Fabricação</CardTitle>
+
                 <p className="text-sm text-gray-500">
                   {currentStep} de {steps.length} etapas concluídas
                 </p>
+
+                
+                <div className="mt-4">
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-gray-500">Progresso</span>
+                    <span className="font-medium text-green-600">
+                      {progress}%
+                    </span>
+                  </div>
+
+                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-green-500 transition-all duration-700 ease-in-out"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                </div>
               </CardHeader>
 
               <CardContent>
@@ -162,7 +169,7 @@ const VehiclePage = () => {
                             </p>
 
                             {step.done && (
-                              <Badge className="mt-1 text-xs bg-green-100 text-green-600">
+                              <Badge className="mt-1 text-xs bg-green-100 text-green-600 hover:bg-green-200 hover:text-green-700">
                                 Concluído
                               </Badge>
                             )}
